@@ -274,6 +274,7 @@
             android:backgroundTint="#B5B5D6"
             android:text="sqrt"
             android:layout_marginLeft="20dp"
+            android:onClick="sqrt"
             />
 
         <Button

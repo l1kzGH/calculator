@@ -213,6 +213,34 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(str);
     }
 
+    public void sqrt(View view) {
+        TextView textView = findViewById(R.id.textView);
+        String str = textView.getText().toString();
+        int toggle = -1;
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            if (signes.contains(str.charAt(i) + "")) {
+                toggle = i;
+                break;
+            }
+        }
+
+        String numStr = str.substring(toggle + 1);
+        String oldStr;
+        if(toggle == -1){
+            oldStr = "";
+        } else {
+            oldStr = str.substring(0, toggle + 1);
+        }
+        System.out.println(oldStr);
+
+        double num = Double.parseDouble(numStr);
+        num = Math.sqrt(num);
+        str = oldStr + num;
+
+        textView.setText(str);
+    }
+
     public void clear(View view) {
         TextView textView = findViewById(R.id.textView);
         textView.setText("0");
@@ -341,5 +369,4 @@ public class MainActivity extends AppCompatActivity {
 
         textView.setText(res);
     }
-
 }
