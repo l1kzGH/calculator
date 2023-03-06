@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -14,7 +15,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     int nums = 1;
     int isDot = 0;
-    final String signes = "+-/*";
+    final static String SIGNS = "+-/*";
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +26,19 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setContentView(R.layout.activity_main);
 
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
                         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+        textView = findViewById(R.id.textView);
     }
 
 
     public void num1(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -45,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num2(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -56,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num3(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -67,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num4(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -78,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num5(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num6(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -100,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num7(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -111,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num8(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -122,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num9(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 1 && str.charAt(str.length() - 1) == '0') {
@@ -133,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void num0(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         if (nums == 0 || nums >= 2 || (nums == 1 && str.charAt(str.length() - 1) != '0')) {
@@ -144,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void dot(View view) {
         if (isDot != 1) {
-            TextView textView = findViewById(R.id.textView);
             String str = textView.getText().toString();
 
             isDot = 1;
@@ -158,12 +152,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reverse(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         int toggle = -1;
 
         for (int i = str.length() - 1; i >= 0; i--) {
-            if (signes.contains(str.charAt(i) + "")) {
+            if (SIGNS.contains(str.charAt(i) + "")) {
                 toggle = i;
                 break;
             }
@@ -197,12 +190,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void oneDivideBy(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         int toggle = -1;
 
         for (int i = str.length() - 1; i >= 0; i--) {
-            if (signes.contains(str.charAt(i) + "")) {
+            if (SIGNS.contains(str.charAt(i) + "")) {
                 toggle = i;
                 break;
             }
@@ -214,12 +206,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sqrt(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         int toggle = -1;
 
         for (int i = str.length() - 1; i >= 0; i--) {
-            if (signes.contains(str.charAt(i) + "")) {
+            if (SIGNS.contains(str.charAt(i) + "")) {
                 toggle = i;
                 break;
             }
@@ -227,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
         String numStr = str.substring(toggle + 1);
         String oldStr;
-        if(toggle == -1){
+        if (toggle == -1) {
             oldStr = "";
         } else {
             oldStr = str.substring(0, toggle + 1);
@@ -242,18 +233,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clear(View view) {
-        TextView textView = findViewById(R.id.textView);
         textView.setText("0");
         nums = 1;
         isDot = 0;
     }
 
     public void plus(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         String lastChar = str.charAt(str.length() - 1) + "";
 
-        if (signes.contains(lastChar)) {
+        if (SIGNS.contains(lastChar)) {
             str = str.substring(0, str.length() - 1);
         }
         textView.setText(str + "+");
@@ -262,11 +251,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void minus(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         String lastChar = str.charAt(str.length() - 1) + "";
 
-        if (signes.contains(lastChar)) {
+        if (SIGNS.contains(lastChar)) {
             str = str.substring(0, str.length() - 1);
         }
         textView.setText(str + "-");
@@ -275,11 +263,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void division(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         String lastChar = str.charAt(str.length() - 1) + "";
 
-        if (signes.contains(lastChar)) {
+        if (SIGNS.contains(lastChar)) {
             str = str.substring(0, str.length() - 1);
         }
         textView.setText(str + "/");
@@ -288,11 +275,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void multiply(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
         String lastChar = str.charAt(str.length() - 1) + "";
 
-        if (signes.contains(lastChar)) {
+        if (SIGNS.contains(lastChar)) {
             str = str.substring(0, str.length() - 1);
         }
         textView.setText(str + "*");
@@ -302,14 +288,13 @@ public class MainActivity extends AppCompatActivity {
 
     //parsing and gets result
     public void result(View view) {
-        TextView textView = findViewById(R.id.textView);
         String str = textView.getText().toString();
 
         List<String> list = new ArrayList();
         String s = "";
 
         // fix "7*" error
-        if (signes.contains(str.charAt(str.length() - 1) + "")) {
+        if (SIGNS.contains(str.charAt(str.length() - 1) + "")) {
             str = str.substring(0, str.length() - 1);
         }
         //parser to list
@@ -317,14 +302,13 @@ public class MainActivity extends AppCompatActivity {
             s += str.charAt(i);
             if (i == str.length() - 1) {
                 list.add(s);
-            } else if (signes.contains(str.charAt(i + 1) + "")) {
+            } else if (SIGNS.contains(str.charAt(i + 1) + "")) {
                 list.add(s);
                 list.add(str.charAt(i + 1) + "");
                 i++;
                 s = "";
             }
         }
-        System.out.println(list);
 
         double temp;
 
@@ -363,8 +347,8 @@ public class MainActivity extends AppCompatActivity {
 
         //max
         String res = list.get(0);
-        if (res.length() > 8) {
-            res = res.substring(0, 8);
+        if (res.length() > 15) {
+            res = res.substring(0, 13) + res.substring(res.length() - 2);
         }
 
         textView.setText(res);
